@@ -21,14 +21,24 @@ function outputTemp(tempRow) {
 
 function closestToZero(numbers) {
     const arrayNumbers = numbers.split(' ')
+
     let closest = 0;
 
     if(!arrayNumbers || arrayNumbers[0]===""){
         return closest;
     }
 
-    closest = arrayNumbers.reduce((a, b) => Math.abs(b) < Math.abs(a) ? a : b);
+    for (let i = 0; i < arrayNumbers.length ; i++) {
+        if (closest === 0) {
+            closest = arrayNumbers[i];
+        } else if (arrayNumbers[i] > 0 && arrayNumbers[i] <= Math.abs(closest)) {
+            closest = arrayNumbers[i];
+        } else if (arrayNumbers[i] < 0 && - arrayNumbers[i] < Math.abs(closest)) {
+            closest = arrayNumbers[i];
+        }
+    }
 
     return parseInt(closest);
 }
+
 
